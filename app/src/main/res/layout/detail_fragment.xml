@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="com.apps.myapplication.mvvm.maindetail.DetailViewModel" />
+        <variable name="handler" type="com.apps.myapplication.mvvm.maindetail.DetailViewModel" />
+
+    </data>
+
+    <android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        app:imageSource="@{viewModel.img}"/>
+                <ImageView android:layout_width="24dp"
+                           android:layout_height="24dp"
+                           android:layout_alignParentLeft="true"
+                           android:layout_marginTop="16dp"
+                           android:onClick="@{(v) -> viewModel.onClickFinish()}"
+                           android:layout_marginLeft="16dp"
+                           android:src="@drawable/ic_arrow_back_black_24dp"/>
+            </RelativeLayout>
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="20dp"
+                      android:layout_marginRight="20dp"
+                      android:textColor="#000"
+                      android:textStyle="bold"
+                      android:layout_marginTop="12dp"
+                      android:textSize="19dp"
+                      android:text="@{viewModel.title}"/>
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="20dp"
+                      android:layout_marginRight="20dp"
+                      android:textStyle="bold"
+                      android:textSize="14dp"
+                      android:layout_marginTop="8dp"
+                      android:text="@{viewModel.kategori}"/>
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="20dp"
+                      android:layout_marginRight="20dp"
+                      android:textStyle="bold"
+                      android:textSize="14dp"
+                      android:layout_marginTop="8dp"
+                      android:text="@{viewModel.author}"/>
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_marginLeft="20dp"
+                          android:layout_marginRight="20dp"
+                          android:layout_marginTop="4dp"
+                          android:orientation="horizontal">
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textColor="#000"
+                          android:textStyle="bold"
+                          android:textSize="12dp"
+                          android:text="Jumlah : "/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textColor="#000"
+                          android:textStyle="bold"
+                          android:textSize="12dp"
+                          android:text="@{`` +viewModel.qty}"/>
+            </LinearLayout>
+
+            <Button android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pinjam"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#fff"
+                    android:visibility="@{viewModel.qty == 0 ? View.GONE : View.VISIBLE}"
+                    android:onClick="@{(v) -> viewModel.pinjamBuku()}"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/colorPrimary"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>
